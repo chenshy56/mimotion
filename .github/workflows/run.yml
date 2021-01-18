@@ -21,8 +21,8 @@ jobs:
     - name: 开始
       run: |
         pip install requests
-        type='${{secrets.PushType}}'
-        key='${{ secrets.PushKey'
+        type='${{secrets.PushType }}'
+        key='${{ secrets.PushKey }}'
         user='${{ secrets.User }}'
         pwd='${{ secrets.Pwd }}'
         step='${{ secrets.Step }}'
