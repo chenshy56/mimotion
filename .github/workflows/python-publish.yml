@@ -1,0 +1,33 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+name: 刷步数
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+  schedule:
+    - cron: 0 12 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: 初始化Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: 开始
+      run: |
+        pip install requests
+        type='${{secrets.PushType}}'
+        key='${{ secrets.PushKey'
+        user='${{ secrets.User }}'
+        pwd='${{ secrets.Pwd }}'
+        step='${{ secrets.Step }}'
+
+        python3 main.py ${type} ${key} ${user} ${pwd} ${step}
